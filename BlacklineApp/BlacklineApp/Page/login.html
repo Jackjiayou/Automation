@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blackline Automation System</title>
+    <link rel="stylesheet" href="../css/toastr.css">
+    <link rel="stylesheet" href="../css/toastr.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/bootstrap-select.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/toastr.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/login.css" rel="stylesheet" />
+    <script src="js/login.js"></script>
+    <script src="js/dialog.js"></script>
+</head>
+
+<body style="overflow-y: hidden">
+    <div>
+        <div class=" modal fade" id="login_wait" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog loding">
+                <img style="margin-right:40px" src="img/wait.gif">
+                <div style="color:antiquewhite; display: inline-block;font-size:20px"><p id="p_msg"></p></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="padding-all">
+                <div class="header">
+                    <h1>Blackline Automation System</h1>
+                </div>
+
+                <div class="design-w3l">
+                    <div class="mail-form-agile">
+                        <form action="#" method="post">
+                            <input onblur="showChromeTool()" type="text" id="username" name="name" placeholder="User Name" required="" />
+                            <input type="password" id="password" name="password" class="padding" placeholder="Password" required="" />
+                            <input type="button" onclick="logon()" id="login" value="login">
+                        </form>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                <!--<div class="footer">
+            <p>AEE GROUP  <a>  24# </a></p>
+            </div>-->
+            </div>
+        </div>
+
+    </div>
+   
+</body>
+</html>

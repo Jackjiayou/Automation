@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="../css/toastr.css">
+    <link rel="stylesheet" href="../css/toastr.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/bootstrap-select.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">Please input time</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class=" modal fade" id="wait" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog loding">
+
+            <img src="../img/wait.gif">
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalSelect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">Please select Gu or Country</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="header flexRow">
+        <p>Blackline Automation System</p>
+        <img src="../img/ACC_hpd_logo3.png">
+    </div>
+    <div class="content">
+        <div class="top">
+            <div class="flexRow choose">
+                <div class="gu">
+                    <span>GU：</span>
+                    <label for="id_select"></label>
+                    <select id="id_select" class="selectpicker bla bla bli" multiple data-live-search="true"
+                            title="--Select Gu--">
+                        <option>Africa</option>
+                        <option>ANZ</option>
+                        <option>ASEAN</option>
+                        <option>ASGR</option>
+                        <option>Canada</option>
+                        <option>Gallia</option>
+                        <option>Greater China</option>
+                        <option>Iberia</option>
+                        <option>ICEG</option>
+                        <option>India</option>
+                        <option>Japan</option>
+                        <option>Latin America</option>
+                        <option>MET</option>
+                        <option>Nordic</option>
+                        <option>UK, Ireland</option>
+                        <option>United States</option>
+                    </select>
+                </div>
+                <div class="country">
+                    <form action=""></form>
+                    <span>Country：</span>
+                    <label for="id_select"></label>
+                    <select id="id_select" class="selectpicker bla bla bli" multiple data-live-search="true"
+                            title="--Select Country--">
+                        <option>Afghanistan</option>
+                        <option>Albania</option>
+                        <option>Algeria</option>
+                        <option>Amer.Virgin Is.</option>
+                        <option>Andorra</option>
+                        <option>Angola</option>
+                        <option>Anguilla</option>
+                        <option>Antigua and Barbuda</option>
+                        <option>Argentina</option>
+                        <option>Armenia</option>
+                        <option>Aruba</option>
+                        <option>Australia</option>
+                        <option>Austria</option>
+                        <option>Azerbaijan</option>
+                        <option>Bahamas</option>
+                        <option>Bahrain</option>
+                        <option>Bangladesh</option>
+                        <option>Barbados</option>
+                        <option>Belarus</option>
+                        <option>Belgium</option>
+                        <option>Belize</option>
+                        <option>Benin</option>
+                        <option>Bermuda</option>
+                        <option>Bhutan</option>
+                        <option>Bolivia</option>
+                        <option>Bosnia and Herzegovina</option>
+                        <option>Botswana</option>
+                        <option>Bouvet Island</option>
+                        <option>Brazil</option>
+                        <option>Brit.Virgin Is.</option>
+                        <option>British Indian Ocean Territory</option>
+                        <option>Brunei</option>
+                        <option>Bulgaria</option>
+                        <option>Burkina-Faso</option>
+                        <option>Burundi</option>
+                        <option>Cambodia</option>
+                        <option>Cameroon</option>
+                        <option>Canada</option>
+                        <option>Cape Verde</option>
+                        <option>Cayman Islands</option>
+                        <option>Central African Republic</option>
+                        <option>Chad</option>
+                        <option>Chile</option>
+                        <option>China</option>
+                        <option>Christmas Islnd</option>
+                        <option>Coconut Islands</option>
+                        <option>Colombia</option>
+                        <option>Comoros</option>
+                        <option>Congo (Dem Rep)</option>
+                        <option>Congo (Rep)</option>
+                        <option>Cook Islands</option>
+                        <option>Costa Rica</option>
+                        <option>Côte d'Ivoire</option>
+                        <option>Croatia</option>
+                        <option>Cuba</option>
+                        <option>Curaçao</option>
+                        <option>Cyprus</option>
+                        <option>Czech Republic</option>
+                        <option>Denmark</option>
+                        <option>Djibouti</option>
+                        <option>Dominica</option>
+                        <option>Dominican Rep.</option>
+                        <option>Dutch Antilles</option>
+                        <option>East Timor</option>
+                        <option>Ecuador</option>
+                        <option>Egypt</option>
+                        <option>El Salvador</option>
+                        <option>Equatorial Guinea</option>
+                        <option>Eritrea</option>
+                        <option>Estonia</option>
+                        <option>Ethiopia</option>
+                        <option>Falkland Islnds</option>
+                        <option>Faroe Islands</option>
+                        <option>Fiji</option>
+                        <option>Finland</option>
+                        <option>France</option>
+                        <option>French Guayana</option>
+                        <option>French Polynesia</option>
+                        <option>French S.Territ</option>
+                        <option>Gabon</option>
+                        <option>Gambia</option>
+                        <option>Georgia</option>
+                        <option>Germany</option>
+                        <option>Ghana</option>
+                        <option>Gibraltar</option>
+                        <option>Greece</option>
+                        <option>Greenland</option>
+                        <option>Grenada</option>
+                        <option>Guadeloupe</option>
+                        <option>Guam</option>
+                        <option>Guatemala</option>
+                        <option>Guernsey</option>
+                        <option>Guinea</option>
+                        <option>Guinea-Bissau</option>
+                        <option>Guyana</option>
+                        <option>Haiti</option>
+                        <option>Heard Island and McDonald Islands</option>
+                        <option>Honduras</option>
+                        <option>Hong Kong</option>
+                        <option>Hungary</option>
+                        <option>Iceland</option>
+                        <option>India</option>
+                        <option>Indonesia</option>
+                        <option>Iran</option>
+                        <option>Iraq</option>
+                        <option>Ireland</option>
+                        <option>Isle of Man</option>
+                        <option>Israel</option>
+                        <option>Italy</option>
+                        <option>Jamaica</option>
+                        <option>Japan</option>
+                        <option>Jersey</option>
+                        <option>Jordan</option>
+                        <option>Kazakhstan</option>
+                        <option>Kenya</option>
+                        <option>Kiribati</option>
+                        <option>Kosovo</option>
+                        <option>Kuwait</option>
+                        <option>Kyrgyzstan</option>
+                        <option>Laos</option>
+                        <option>Latvia</option>
+                        <option>Lebanon</option>
+                        <option>Lesotho</option>
+                        <option>Liberia</option>
+                        <option>Libya</option>
+                        <option>Liechtenstein</option>
+                        <option>Lithuania</option>
+                        <option>Luxembourg</option>
+                        <option>Macau</option>
+                        <option>Macedonia</option>
+                        <option>Madagascar</option>
+                        <option>Malawi</option>
+                        <option>Malaysia</option>
+                        <option>Maldives</option>
+                        <option>Mali</option>
+                        <option>Malta</option>
+                        <option>Marshall Islnds</option>
+                        <option>Martinique</option>
+                        <option>Mauretania</option>
+                        <option>Mauritius</option>
+                        <option>Mayotte</option>
+                        <option>Mexico</option>
+                        <option>Micronesia</option>
+                        <option>Minor Outl.Ins.</option>
+                        <option>Moldova</option>
+                        <option>Monaco</option>
+                        <option>Mongolia</option>
+                        <option>Montenegro</option>
+                        <option>Montserrat</option>
+                        <option>Morocco</option>
+                        <option>Mozambique</option>
+                        <option>Myanmar</option>
+                        <option>N.Mariana Islnd</option>
+                        <option>Namibia</option>
+                        <option>Nauru</option>
+                        <option>Nepal</option>
+                        <option>Netherlands</option>
+                        <option>New Caledonia</option>
+                        <option>New Zealand</option>
+                        <option>Nicaragua</option>
+                        <option>Niger</option>
+                        <option>Nigeria</option>
+                        <option>Niue Islands</option>
+                        <option>Norfolk Island</option>
+                        <option>North Korea</option>
+                        <option>Norway</option>
+                        <option>Oman</option>
+                        <option>Pakistan</option>
+                        <option>Palau</option>
+                        <option>Panama</option>
+                        <option>Papua New Guinea</option>
+                        <option>Paraguay</option>
+                        <option>Peru</option>
+                        <option>Philippines</option>
+                        <option>Pitcairn Islnds</option>
+                        <option>Poland</option>
+                        <option>Portugal</option>
+                        <option>Puerto Rico</option>
+                        <option>Qatar</option>
+                        <option>Reunion</option>
+                        <option>Romania</option>
+                        <option>Russian Federation</option>
+                        <option>Rwanda</option>
+                        <option>S. Sandwich Ins</option>
+                        <option>Saint Kitts and Nevis</option>
+                        <option>Saint Pierre and Miquelon</option>
+                        <option>Samoa, American</option>
+                        <option>San Marino</option>
+                        <option>Sao Tome and Principe</option>
+                        <option>Saudi Arabia</option>
+                        <option>Senegal</option>
+                        <option>Serbia</option>
+                        <option>Seychelles</option>
+                        <option>Sierra Leone</option>
+                        <option>Singapore</option>
+                        <option>Slovakia</option>
+                        <option>Slovenia</option>
+                        <option>Solomon Islands</option>
+                        <option>Somalia</option>
+                        <option>South Africa</option>
+                        <option>South Korea</option>
+                        <option>Spain</option>
+                        <option>Sri Lanka</option>
+                        <option>St. Helena</option>
+                        <option>St. Lucia</option>
+                        <option>St. Vincent</option>
+                        <option>Sudan</option>
+                        <option>Suriname</option>
+                        <option>Svalbard</option>
+                        <option>Swaziland</option>
+                        <option>Sweden</option>
+                        <option>Switzerland</option>
+                        <option>Syria</option>
+                        <option>Taiwan</option>
+                        <option>Tajikstan</option>
+                        <option>Tanzania</option>
+                        <option>Thailand</option>
+                        <option>Togo</option>
+                        <option>Tokelau Islands</option>
+                        <option>Tonga</option>
+                        <option>Trinidad,Tobago</option>
+                        <option>Tunisia</option>
+                        <option>Turkey</option>
+                        <option>Turkmenistan</option>
+                        <option>Turks and Caicos Islands</option>
+                        <option>Tuvalu</option>
+                        <option>Uganda</option>
+                        <option>Ukraine</option>
+                        <option>United Arab Emirates</option>
+                        <option>United Kingdom</option>
+                        <option>Uruguay</option>
+                        <option>USA</option>
+                        <option>Uzbekistan</option>
+                        <option>Vanuatu</option>
+                        <option>Vatican City</option>
+                        <option>Venezuela</option>
+                        <option>Vietnam</option>
+                        <option>Wallis and Futuna</option>
+                        <option>West Sahara</option>
+                        <option>Western Samoa</option>
+                        <option>Yemen</option>
+                        <option>Zambia</option>
+                        <option>Zimbabwe</option>
+                    </select>
+                </div>
+                <div class="time flexRow">
+                    <span>Input time：</span>
+                    <input class="input" type="text" value="5" name="time" />
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="radioBtn">
+                <input class="chooseBtn" type="radio" name="radioBtn" value="1" checked="checked"><span class="manual">Manual</span>
+                <input class="chooseBtn" type="radio" name="radioBtn" value="2"><span>Automation</span>
+            </div>
+            <div class="btnContent">
+                <div class="download">
+                    <div class="download_top">
+                        <input class="whole" type="radio" name="whole" value="1" checked="checked"><span class="wholeSpan">Whole</span>
+                        <input class="whole" type="radio" name="whole" value="2"><span>Steps</span>
+                    </div>
+                    <div id="div_download_center" class="download_center flexRow">
+                        <div class="download_flex flexRow">
+                            <span>Please Select the report you want to download:</span>
+                            <select name="cou" id="cou">
+                                <option value="Asia">Asia</option>
+                                <option value="Africa">Africa</option>
+                                <option value="Europe">Europe</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="download_bottom flexRow">
+                        <div class="row flexRow"></div>
+                        <div class="download_bottom_flex flexRow">
+                            <div class="downloadBtn">Download</div>
+                            <span>Download reports from GTF.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="run flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="run_flex flexRow">
+                        <div class="runBtn">Run VBA</div>
+                        <span>Run VBA tools to seperate excel files.</span>
+                    </div>
+                </div>
+                <div class="upload flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="upload_flex flexRow">
+                        <div class="uploadBtn">Upload</div>
+                        <span>Upload reports Blackline.</span>
+                    </div>
+                </div>
+                <div class="preview flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="preview_flex flexRow">
+                        <div class="previewBtn">Preview</div>
+                        <span>Preview reports uploaded by user.</span>
+                    </div>
+                </div>
+            </div>
+            <div id="div_automation" class="automation">
+                <div class="report flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="report_flex flexRow">
+                        <div class="reportBtn"> Generate Report</div>
+                        <span>Run the download, macro and upload together.</span>
+                    </div>
+                </div>
+                <div class="preview flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="preview_flex flexRow">
+                        <div class="previewBtn">Preview</div>
+                        <span>Preview reports uploaded by user.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script src="../js/toastr.js"></script>
+</body>
+</html>
+

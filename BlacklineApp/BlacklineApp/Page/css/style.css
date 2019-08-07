@@ -1,0 +1,52 @@
+body {
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  html{
+    height:100%;
+  }
+  
+  
+  .canvas {
+    align-items: center;
+    background: #eeeeee;
+    border-radius: 50%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    display: flex;
+    height: 10em;
+    justify-content: center;
+    width: 10em;
+  }
+  
+  
+  
+  
+  
+  
+  /* Spinner 4 starts here */
+  .spinner4 {
+    display: flex;
+    animation: spinnerFour 1s linear infinite;
+    border: solid 7px transparent;
+    border-top: solid 7px #4DB6AC;
+    border-radius: 100%;
+    justify-content: center;
+    width: 3em;
+    height: 3em;
+  }
+  
+  @keyframes spinnerFour {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  /* Spinner 4 ends here */
+  

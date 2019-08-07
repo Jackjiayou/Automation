@@ -1,0 +1,124 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>3957212d-3d0c-4433-9807-bde9ba787776</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>BlacklineApp.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>BlacklineApp</Name>
+    <RootNamespace>BlacklineApp</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BlacklineApp.py" />
+    <Compile Include="call_vba.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="excel_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="log_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainFrame.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PublicData.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="return_value_model.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SeleniumHelper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\CallBack.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\module1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\testmodule2.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\module3.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Page\css\" />
+    <Folder Include="Page\fonts\" />
+    <Folder Include="Page\html\" />
+    <Folder Include="Page\img\" />
+    <Folder Include="Page\jquery\" />
+    <Folder Include="Page\js\" />
+    <Folder Include="Resource\EALA\" />
+    <Folder Include="Resource\EALA\BlacklineMonthlyReconciliation\" />
+    <Folder Include="Resource\EALA\ImportGroup\" />
+    <Folder Include="Resource\EALA\Source File\" />
+    <Folder Include="Resource\EALA\Template\" />
+    <Folder Include="test\" />
+    <Folder Include="Page\" />
+    <Folder Include="Resource\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Page\css\bootstrap-select.css" />
+    <Content Include="Page\css\bootstrap-select.min.css" />
+    <Content Include="Page\css\bootstrap.min.css" />
+    <Content Include="Page\css\common.css" />
+    <Content Include="Page\css\font-awesome.css" />
+    <Content Include="Page\css\font-awesome.min.css" />
+    <Content Include="Page\css\style.css" />
+    <Content Include="Page\css\login.css" />
+    <Content Include="Page\css\toastr.css" />
+    <Content Include="Page\css\toastr.min.css" />
+    <Content Include="Page\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Page\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Page\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Page\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Page\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Page\html\index.html" />
+    <Content Include="Page\html\load.html" />
+    <Content Include="Page\img\ACC_hpd_logo3.png" />
+    <Content Include="Page\img\favicon.ico" />
+    <Content Include="Page\img\login.jpg" />
+    <Content Include="Page\img\wait.gif" />
+    <Content Include="Page\index.html" />
+    <Content Include="Page\jquery\jquery-3.3.1.min.js" />
+    <Content Include="Page\js\bootstrap-select.js" />
+    <Content Include="Page\js\bootstrap.min.js" />
+    <Content Include="Page\js\common.js" />
+    <Content Include="Page\js\dialog.js" />
+    <Content Include="Page\js\login.js" />
+    <Content Include="Page\js\toastr.js" />
+    <Content Include="Page\js\toastr.min.js" />
+    <Content Include="Page\login.html" />
+    <Content Include="Resource\DownloadGtfReportConfig.xlsx" />
+    <Content Include="Resource\EALA\Template\Monthly Recon Report_Template.xlsx" />
+    <Content Include="Resource\EALA\Template\Report_Template.xlsx" />
+    <Content Include="Resource\EALA\tool.xlsm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

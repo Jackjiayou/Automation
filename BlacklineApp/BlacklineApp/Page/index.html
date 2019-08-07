@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/toastr.css" rel="stylesheet" />
+    <link href="css/toastr.min.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/bootstrap-select.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">Please input time</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class=" modal fade" id="wait" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog loding">
+            <img style="margin-right:40px" src="../img/wait.gif">
+            <div style="color:antiquewhite; display: inline-block;font-size:20px"><p id="p_msg">loading....</p></div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="myModalSelect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">Please select Gu or Country</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="header flexRow">
+        <p>Blackline Automation System</p>
+        <img src="../img/ACC_hpd_logo3.png">
+    </div>
+    <div class="content">
+        <div class="top">
+            <div class="flexRow choose">
+                <!--<button onclick="selectAll()">select</button>
+                <button style="display:none" onclick="closeDevToolsFrm()">close</button>
+                <button style="display:block" onclick="showDevToolsFrm()">show</button>-->
+                <div class="gu">
+                    <span>GU：</span>
+                    <label for="select_gu"></label>
+                    <select id="select_gu" class="selectpicker bla bla bli" multiple data-live-search="true"
+                            title="--Select Gu--">
+                        <option>Africa</option>
+                        <option>ANZ</option>
+                        <option>ASEAN</option>
+                        <option>ASGR</option>
+                        <option>Canada</option>
+                        <option>Gallia</option>
+                        <option>Greater China</option>
+                        <option>Iberia</option>
+                        <option>ICEG</option>
+                        <option>India</option>
+                        <option>Japan</option>
+                        <option>Latin America</option>
+                        <option>MET</option>
+                        <option>Nordic</option>
+                        <option>UK, Ireland</option>
+                        <option>United States</option>
+                    </select>
+                </div>
+                <div class="country">
+                    <form action=""></form>
+                    <span>Country：</span>
+                    <label for="select_country"></label>
+                    <select id="select_country" class="selectpicker bla bla bli" multiple data-live-search="true"
+                            title="--Select Country--">
+                        <option>Andorra</option>
+                        <option>Angola</option>
+                        <option>Argentina</option>
+                        <option>Australia</option>
+                        <option>Austria</option>
+                        <option>Azerbaijan</option>
+                        <option>Belgium</option>
+                        <option>Botswana</option>
+                        <option>Brazil</option>
+                        <option>Brunei</option>
+                        <option>Bulgaria</option>
+                        <option>Canada</option>
+                        <option>Chile</option>
+                        <option>China</option>
+                        <option>Colombia</option>
+                        <option>Costa Rica</option>
+                        <option>Cyprus</option>
+                        <option>Czech Republic</option>
+                        <option>Denmark</option>
+                        <option>Egypt</option>
+                        <option>Finland</option>
+                        <option>France</option>
+                        <option>Germany</option>
+                        <option>Ghana</option>
+                        <option>Greece</option>
+                        <option>Hong Kong</option>
+                        <option>Hungary</option>
+                        <option>India</option>
+                        <option>Indonesia</option>
+                        <option>Ireland</option>
+                        <option>Israel</option>
+                        <option>Italy</option>
+                        <option>Japan</option>
+                        <option>Kazakhstan</option>
+                        <option>Kenya</option>
+                        <option>Latvia</option>
+                        <option>Luxembourg</option>
+                        <option>Macau</option>
+                        <option>Malaysia</option>
+                        <option>Mauritius</option>
+                        <option>Mexico</option>
+                        <option>Morocco</option>
+                        <option>Mozambique</option>
+                        <option>Myanmar</option>
+                        <option>Namibia</option>
+                        <option>Netherlands</option>
+                        <option>New Zealand</option>
+                        <option>Nigeria</option>
+                        <option>Norway</option>
+                        <option>Oman</option>
+                        <option>Panama</option>
+                        <option>Peru</option>
+                        <option>Philippines</option>
+                        <option>Poland</option>
+                        <option>Portugal</option>
+                        <option>Puerto Rico</option>
+                        <option>Qatar</option>
+                        <option>Romania</option>
+                        <option>Russian Federation</option>
+                        <option>Saudi Arabia</option>
+                        <option>Singapore</option>
+                        <option>Slovakia</option>
+                        <option>South Africa</option>
+                        <option>South Korea</option>
+                        <option>Spain</option>
+                        <option>Sweden</option>
+                        <option>Switzerland</option>
+                        <option>Taiwan</option>
+                        <option>Tanzania</option>
+                        <option>Thailand</option>
+                        <option>Trinidad,Tobago</option>
+                        <option>Tunisia</option>
+                        <option>Turkey</option>
+                        <option>Ukraine</option>
+                        <option>United Arab Emirates</option>
+                        <option>United Kingdom</option>
+                        <option>Uruguay</option>
+                        <option>USA</option>
+                        <option>Venezuela</option>
+                        <option>Vietnam</option>
+                        <option>Zambia</option>
+                    </select>
+                </div>
+                <div class="time flexRow">
+                    <span>Input time：</span>
+                    <input onblur="checkTime()" onkeyup="isNumber(this)" class="input" id="check_time" type="text" value="5" name="time" />
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="radioBtn">
+                <input style="cursor: pointer;" class="chooseBtn" type="radio" name="radioBtn" value="1" checked="checked"><span class="manual">Manual</span>
+                <input style="cursor: pointer;" class="chooseBtn" type="radio" name="radioBtn" value="2"><span>Automation</span>
+            </div>
+            <div id="div_btnContent" class="btnContent">
+                <div class="download">
+                    <div class="download_top">
+                        <input style="cursor: pointer;" class="whole" type="radio" name="whole" value="1" checked="checked"><span class="wholeSpan">Whole</span>
+                        <input style="cursor: pointer;" class="whole" type="radio" name="whole" value="2"><span>Steps</span>
+                    </div>
+                    <div id="div_download_center" class="download_center flexRow">
+                        <div class="download_flex flexRow">
+                            <span style="color:#1C81E5">Please Select the report you want to download:</span>
+                            <select id="select_repoart_names" name="cou" class="selectpicker bla bla bli" data-live-search="true">
+                                <!--<select style="cursor: pointer;" name="cou" id="select_repoart_names">-->
+                                <option value="Asia">Asia</option>
+                                <option value="Africa">Africa</option>
+                                <option value="Europe">Europe</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="download_bottom flexRow">
+                        <div class="row flexRow"></div>
+                        <div class="download_bottom_flex flexRow">
+                            <div id="btnDoanloadReport" class="downloadBtn divClick">Download</div>
+                            <span>Download reports from GTF.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="run flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="run_flex flexRow">
+                        <div id="div_runVba" class="runBtn divClick" onclick="runVba()">Run VBA</div>
+                        <span>Run VBA tools to seperate excel files.</span>
+                    </div>
+                </div>
+                <div class="upload flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="upload_flex flexRow">
+                        <div onclick="upload()" class="uploadBtn divClick">Upload</div>
+                        <span>Upload reports Blackline.</span>
+                    </div>
+                </div>
+                <div class="preview flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="preview_flex flexRow">
+                        <div id="div_preview" onclick="preview()" class="previewBtn divClick">Preview</div>
+                        <span>Preview reports uploaded by user.</span>
+                    </div>
+                </div>
+            </div>
+            <div id="div_automation" class="automation">
+                <div class="report flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="report_flex flexRow">
+                        <div onclick="runTasks()" class="reportBtn divClick"> Generate Report</div>
+                        <span>Run the download, macro and upload together.</span>
+                    </div>
+                </div>
+                <div class="preview flexRow">
+                    <div class="row flexRow"></div>
+                    <div class="preview_flex flexRow">
+                        <div onclick="preview()" class="previewBtn divClick">Preview</div>
+                        <span>Preview reports uploaded by user.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/dialog.js"></script>
+    <script src="js/toastr.js"></script>
+</body>
+</html>
+

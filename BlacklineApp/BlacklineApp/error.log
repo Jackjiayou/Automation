@@ -1,0 +1,112 @@
+
+[2019-07-15 14:26:54] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+TypeError: check_user_info() missing 1 required positional argument: 'my_client'
+
+
+[2019-07-17 09:43:02] Traceback (most recent call last):
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\urllib\parse.py", line 856, in urlencode
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\MainFrame.py", line 178, in check_user_info
+    data=urllib.parse.urlencode(PublicData.app_log_file_path)
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\urllib\parse.py", line 864, in urlencode
+    "or mapping object").with_traceback(tb)
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\urllib\parse.py", line 856, in urlencode
+    raise TypeError
+TypeError: not a valid non-string sequence or mapping object
+
+
+[2019-07-17 09:43:33] Traceback (most recent call last):
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\urllib\parse.py", line 856, in urlencode
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\MainFrame.py", line 178, in check_user_info
+    data=urllib.parse.urlencode(PublicData.app_log_file_path)
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\urllib\parse.py", line 864, in urlencode
+    "or mapping object").with_traceback(tb)
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\urllib\parse.py", line 856, in urlencode
+    raise TypeError
+TypeError: not a valid non-string sequence or mapping object
+
+
+[2019-07-17 15:06:41] Traceback (most recent call last):
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 93, in OnInit
+    self.initialize()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 97, in initialize
+    log_helper.config_log_info(PublicData.app_log_file_path)
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\log_helper.py", line 30, in config_log_info
+    '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1807, in basicConfig
+    h = FileHandler(filename, mode)
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1031, in __init__
+    StreamHandler.__init__(self, self._open())
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1060, in _open
+    return open(self.baseFilename, self.mode, encoding=self.encoding)
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\nancy.fu.liu\\Blackline Automation App\\Log\\err.log'
+
+
+[2019-07-17 15:06:57] Traceback (most recent call last):
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 93, in OnInit
+    self.initialize()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 97, in initialize
+    log_helper.config_log_info(PublicData.app_log_file_path)
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\log_helper.py", line 30, in config_log_info
+    '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1807, in basicConfig
+    h = FileHandler(filename, mode)
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1031, in __init__
+    StreamHandler.__init__(self, self._open())
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1060, in _open
+    return open(self.baseFilename, self.mode, encoding=self.encoding)
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\nancy.fu.liu\\Blackline Automation App\\Log\\err.log'
+
+
+[2019-07-17 15:07:26] Traceback (most recent call last):
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 93, in OnInit
+    self.initialize()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 97, in initialize
+    log_helper.config_log_info(PublicData.app_log_file_path)
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\log_helper.py", line 30, in config_log_info
+    '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1807, in basicConfig
+    h = FileHandler(filename, mode)
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1031, in __init__
+    StreamHandler.__init__(self, self._open())
+  File "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\lib\logging\__init__.py", line 1060, in _open
+    return open(self.baseFilename, self.mode, encoding=self.encoding)
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\nancy.fu.liu\\Blackline Automation App\\Log\\err.log'
+
+
+[2019-07-22 14:39:15] Traceback (most recent call last):
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 93, in OnInit
+    self.initialize()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 101, in initialize
+    frame = MainFrame()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\MainFrame.py", line 78, in __init__
+    Utility.have_file_log_file = create_file(PublicData.app_log_file_path)
+NameError: name 'create_file' is not defined
+
+
+[2019-07-25 16:37:38] Traceback (most recent call last):
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 94, in OnInit
+    self.initialize()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\BlacklineApp.py", line 102, in initialize
+    frame = MainFrame()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\MainFrame.py", line 141, in __init__
+    self.embed_browser()
+  File "C:\Users\nancy.fu.liu\Desktop\Blackline\BlaclineNewHtml\blackline\BlacklineApp\BlacklineApp\MainFrame.py", line 149, in embed_browser
+    [0, 0, width, height])
+  File "window_info.pyx", line 81, in cefpython_py36.WindowInfo.SetAsChild
+TypeError: an integer is required
+
