@@ -4,12 +4,14 @@ import sys
 import getpass
 import datetime
 
+username = ''
+password = ''
 #get time 
 today = datetime.date.today()
 first = today.replace(day=1)
 last_month = first - datetime.timedelta(days=1)
 previous_month_number = last_month.month
-download_report_region_name = 'EALAtest'
+download_report_region_name = 'EALA'
 #app folder pervoius month name
 month_list =['January','February','March','April','May','June','July','August','September','October','November','December']
 app_previous_month_folder_name =month_list[previous_month_number-1]
@@ -34,7 +36,9 @@ myRootPath = sys.path[0].replace('base_library.zip','')
 task_config_file_path = myRootPath+r'\Resource\DownloadGtfReportConfig.xlsx'
 web_driver = None
 browser_type ='chrome'
-download_report_folder_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\Source File'
+download_report_folder_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\Source File_'+ username
+download_report_folder_path_total =  r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\Source File'
+#os.path.expanduser('~') +r'\Blackline Automation App\Source File'
 generate_report_blackline_folder_path_by_vba_tool =r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\BlacklineMonthlyReconciliation'
 generate_report_import_folder_path_by_vba_tool =r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\ImportGroup'
 my_root_tool_path = myRootPath+r'\Resource\EALA\tool.xlsm'
@@ -72,8 +76,7 @@ vba_tool_generate_macro_name = 'tool.xlsm!Module1.generate'
 upload_task_config_sheet_name ='Upload Task'
 approve_task_config_sheet_name ='Approve Task'
 MainFrom = None
-username = ''
-password = ''
+
 #current user name
 user_name = getpass.getuser()
 
@@ -86,20 +89,3 @@ region_config_column_name_country_name = 'Country Name'
 report_sheetname = 'Report'
 def set_user_name():
     user_name = username
-
-
-def set_region_refer_path():
-    try:
-        blackline_monthly_reconciliation_previous_month_file_path =r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\BlacklineMonthlyReconciliation\\'+report_name_in_monthly_reconciliation_folder
-        upload_report_folder = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\ImportGroup'
-        upload_report_folder = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\ImportGroup'
-        download_report_folder_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\Source File'
-        upload_and_approve_excel_log_file_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\BlacklineMonthlyReconciliation\Report_May19.xlsx'
-        generate_report_blackline_folder_path_by_vba_tool =r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\BlacklineMonthlyReconciliation'
-        generate_report_import_folder_path_by_vba_tool =r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\ImportGroup'
-        vba_tool_folder = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name
-        template_folder = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\Template'
-        template_MonthlyReconReportTemplate_file_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\Template\Monthly Recon Report_Template.xlsx'
-        template_ReportTemplate_file_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\Template\Report_Template.xlsx'
-    except Exception as ex:
-        logging('set_region_refer_path :'+str(ex))

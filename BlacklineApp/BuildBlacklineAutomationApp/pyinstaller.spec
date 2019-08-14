@@ -41,7 +41,7 @@ else:
     cipher_obj = None
 
 a = Analysis(
-    ["C:/Users/nancy.fu.liu/Desktop/blacline_code/wxpython/BlacklineApp/BlacklineApp/BlacklineApp.py"],
+    ["C:/Users/nancy.fu.liu/Desktop/blacline_code/wxpython/BlacklineAutomation/BlacklineApp/BlacklineApp/BlacklineApp.py"],
     hookspath=["."],  # To find "hook-cefpython3.py"
     cipher=cipher_obj,
     win_private_assemblies=True,

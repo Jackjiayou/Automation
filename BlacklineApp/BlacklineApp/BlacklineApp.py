@@ -42,6 +42,7 @@ if MAC:
 
 def main():
     have_file_log_file = Utility.create_file(PublicData.app_log_file_path)
+    log_helper.config_log_info(PublicData.app_log_file_path) 
     check_versions()
     sys.excepthook = cef.ExceptHook  # To shutdown all CEF processes on error
     settings = {}

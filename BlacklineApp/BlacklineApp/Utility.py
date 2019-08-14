@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.alert import Alert 
 from selenium.webdriver.support import expected_conditions as EC
 import logging
 import PublicData
@@ -53,7 +54,7 @@ def copy_log_info(sheet_name):
 def check_vba_tool_need_files():
     '''check vba tool need file ''' 
     try:
-        report_foler = PublicData.download_report_folder_path
+        report_foler = PublicData.download_report_folder_path_total
         import_path = report_foler+'\TransactionDetailReport_ImpotReport_'+PublicData.user_name+'.xlsx'
         AssigneeTaxCostAnalysis_path = report_foler+'\AssigneeTaxCostAnalysis_'+PublicData.user_name+'.xlsx'
         Unmapped_path =report_foler+'\TransactionDetailReport_UnmappReport_'+PublicData.user_name+'.xlsx'
@@ -68,10 +69,11 @@ def check_vba_tool_need_files():
 
 def init_app_need_file():
     ''' Initialize app file '''
-    try: 
+    try:
+        create_folder(PublicData.download_report_folder_path_total)        
         create_folder(PublicData.generate_report_blackline_folder_path_by_vba_tool)
         create_folder(PublicData.generate_report_import_folder_path_by_vba_tool)
-        have_file_log_file = create_file(PublicData.app_log_file_path)
+        #have_file_log_file = create_file(PublicData.app_log_file_path)
         have_download_report_folder = create_folder(PublicData.download_report_folder_path)
         create_folder(PublicData.template_folder)
         if not os.path.isfile(PublicData.template_MonthlyReconReportTemplate_file_path):
@@ -82,24 +84,27 @@ def init_app_need_file():
 
         if not os.path.isfile(PublicData.temp_report_excel_file_path):
             excel_helper.create_excel_file(PublicData.temp_report_excel_file_path)
-        excel_helper.create_sheet_name(PublicData.temp_report_excel_file_path,PublicData.download_report_excel_sheet_name,index = 0)
-        excel_helper.create_sheet_name(PublicData.temp_report_excel_file_path,PublicData.log_approve_sheet_name,index = 1)
-        excel_helper.create_sheet_name(PublicData.temp_report_excel_file_path,PublicData.log_upload_sheet_name,index = 2)
+            excel_helper.create_sheet_name(PublicData.temp_report_excel_file_path,PublicData.download_report_excel_sheet_name,index = 0)
+            excel_helper.create_sheet_name(PublicData.temp_report_excel_file_path,PublicData.log_approve_sheet_name,index = 1)
+            excel_helper.create_sheet_name(PublicData.temp_report_excel_file_path,PublicData.log_upload_sheet_name,index = 2)
 
         target_file = PublicData.blackline_monthly_reconciliation_previous_month_file_path
         if not os.path.isfile(target_file):
             excel_helper.create_excel_file(target_file)
-        excel_helper.create_sheet_name(target_file,PublicData.report_sheetname,0)
-        colunm_names = ['Country','Import Total','Unmap Total','Account Reallocation Total','ATCA Total','Variance Checking']
-        excel_helper.set_colunm_name(colunm_names,target_file,PublicData.report_sheetname)
-        excel_helper.create_sheet_name(target_file,PublicData.download_report_excel_sheet_name,index = 1)
-        excel_helper.create_sheet_name(target_file,PublicData.log_approve_sheet_name,index = 2)
-        excel_helper.create_sheet_name(target_file,PublicData.log_upload_sheet_name,index = 3)
+            excel_helper.create_sheet_name(target_file,PublicData.report_sheetname,0)
+            colunm_names = ['Country','Import Total','Unmap Total','Account Reallocation Total','ATCA Total','Variance Checking']
+            excel_helper.set_colunm_name(colunm_names,target_file,PublicData.report_sheetname)
+            excel_helper.create_sheet_name(target_file,PublicData.download_report_excel_sheet_name,index = 1)
+            excel_helper.create_sheet_name(target_file,PublicData.log_approve_sheet_name,index = 2)
+            excel_helper.create_sheet_name(target_file,PublicData.log_upload_sheet_name,index = 3)
         
-        if have_file_log_file and have_download_report_folder:
-            #logging.info('init_app_need_file_path :  '+ 'have_file_log_file:'+str(have_file_log_file)+'      have_download_report_folder:'+str(have_download_report_folder))
-            copy_file(PublicData.my_root_tool_path,PublicData.vba_tool_folder)
-            return True
+        if have_download_report_folder:
+            current_tool_filepath = PublicData.vba_tool_folder+'\\tool.xlsm'
+            if not os.path.isfile(current_tool_filepath):
+                copy_file(PublicData.my_root_tool_path,PublicData.vba_tool_folder)
+                return True
+            else:
+                return True
         else:
             return False
         logging.info('end init_app_need_file')
@@ -124,11 +129,14 @@ def generate_download_report(download_report_list):
                 excel_helper.write_row_data(arry_info,PublicData.temp_report_excel_file_path,PublicData.download_report_excel_sheet_name)    
     except Exception as ex:
         logging.exception('generate_download_report :' +str(ex))  
-        raise
+        #raise
 
 def copy_file(file_path,folder_path):
     try:
-        shutil.copy(file_path,folder_path)
+        file_name = file_path.split('\\')[len(file_path.split('\\'))-1]
+        target_file_path = folder_path+'\\'+file_name
+        if not os.path.isfile(target_file_path):
+            shutil.copy(file_path,folder_path)
     except Exception as ex:
         logging.exception('copy_file :'+ str(ex))
         raise
@@ -358,7 +366,8 @@ def run_task_by_config(driver,config_data_row,previous_data_row):
             #PublicData.new_current_download_report_file_path = PublicData.download_report_folder_path+ "\\" + config_data_row['Value'].split('.')[0]+'_'+PublicData.user_name.replace('.','',1)+'.xlsx'
             PublicData.old_current_download_report_file_path = PublicData.download_report_folder_path+ "\\" + config_data_row['Value2']
             #remove_file()
-            rename_download_file_name()
+            #rename_download_file_name()
+            #os.remove(PublicData.new_current_download_report_file_path)
             #get_class_text(driver)
         elif action_type == 'click':
             on_click(xpath.strip(),driver)
@@ -402,20 +411,46 @@ def run_task_by_config(driver,config_data_row,previous_data_row):
                 #pyautogui.typewrite(['enter'],interval=0.25)
                 print(123)
         elif action_type == 'wait':
-            #logging.info('wait 5 second')
-            #time.sleep(5)
-            #logging.info('wait 5 second over')
-            #logging.info('wait enter begin')
-            #return_data = wait_for_generate(driver)  
-            #logging.info('wait enter end')
-            #if return_data.is_success:
-            #    dom_element_div_accenture =WebDriverWait(driver,600).until(EC.visibility_of_element_located((By.XPATH,xpath.strip())))
-            #else:
-            #    return return_data
-            time.sleep(6)
+            time.sleep(20)
+            #WebDriverWait(driver, 5).until(EC.alert_is_present())
+            #logging.info('alert_is_present')
+            #alert = driver.switch_to_alert()
+            #logging.info('switch_to_alert')
+            #alert.accept()
+            #logging.info('accept')
+            #get_alert_count = 0
+
+            #logging.info('ActionChains start')
             #ActionChains(driver).send_keys(Keys.ENTER).perform()
+            #logging.info('ActionChains end')
+            #while get_alert_count<5:
+            #    try:
+            #        logging.info('Alert start')
+            #        prompt = driver.switch_to.alert
+            #        #prompt = Alert(driver)
+            #        logging.info('Alert end')
+            #        prompt.accept() 
+            #        logging.info('accept commpleted')
+            #        break
+            #    except Exception as ex:
+            #        logging.info('get generate alert error :'+str(ex))
+            #        time.sleep(2)
+            #        get_alert_count = get_alert_count+1
+
+            #logging.info('SetCursorPos start')
+            #win32api.SetCursorPos([30,150])
+            #logging.info('SetCursorPos end')
+            ##执行左单键击，若需要双击则延时几毫秒再点击一次即可
+            #logging.info('MOUSEEVENTF_LEFTUP start')
+            #win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+            #logging.info('MOUSEEVENTF_LEFTUP end')
+
+            logging.info('keybd_event start')
             win32api.keybd_event(13,0,0,0)
+            logging.info('keybd_event end')
+
             xpath_ui_form = '//*[@id="ui_form"]/span[1]/table/tbody/tr[1]/td/div/table/tbody/tr/td[1]/span/div/a[1]'
+
             time.sleep(2)
             have_ui_form = element_exist(driver,xpath_ui_form,5)
             if not have_ui_form:
@@ -584,7 +619,15 @@ def run_upload_task(driver,upload_eale_folder_path,upload_apac_folder,list_prepa
             file_name = get_upload_file_name(upload_description_text)
             full_file_name = exist_file(upload_eale_folder_path,upload_apac_folder,file_name)
             if full_file_name != '':
-                import_file(driver,upload_eale_folder_path,full_file_name)
+                import_file_path =''
+                eale_file_path = upload_eale_folder_path + '\\' + full_file_name
+                apac_file_path = upload_apac_folder + '\\' + full_file_name
+                if os.path.isfile(eale_file_path):
+                   import_file_path = upload_eale_folder_path
+                else:
+                   import_file_path = upload_apac_folder
+
+                import_file(driver,import_file_path,full_file_name)
                 #check redirect page
                 dom_element_span_Comments = WebDriverWait(driver,600).until(EC.presence_of_element_located((By.XPATH,'//*[@id="ctl00_ctl00_contentBody_cphMain_Comments1_lblComments"]')))
                 after_import_str_balance_value = driver.find_element_by_xpath('//*[@id="ctl00_ctl00_contentBody_cphMain_Unidentified1_tbBalance"]').get_attribute("value")
@@ -609,11 +652,13 @@ def run_upload_task(driver,upload_eale_folder_path,upload_apac_folder,list_prepa
                         check_comment_and_time(driver)
                         click_cerfify(driver,cancel_list,prepare_failed_list,list_prepare_index,upload_description_text,True) 
                     else:
+                        logging.info('After clear rounding "Unidentified Difference" != 0,description: '+ upload_description_text)
                         after_import_file_cancel_click(driver)
                         task = {"Country" : country_name,'Description' : describtion,'Reason' : 'After clear rounding "Unidentified Difference" != 0'}
                         prepare_failed_list.append(task)
                         cancel_list.append(task)
                 elif after_import_balance_number_value < -10 or after_import_balance_number_value > 10:
+                    logging.info('After import report "Unidentified Difference" >10 or <-10,description: '+ upload_description_text)
                     after_import_file_cancel_click(driver)
                     #reconciliations_xpath = '//*[@id="modules--execGrid-records"]'
                     wait_element(driver,start_actions_xpath)
@@ -832,12 +877,12 @@ def delete_import_file(driver,count = 2):
     except Exception as ex:
         logging.exception('delete_import_file,.error msg:'+str(ex) )
         driver.refresh()
-        delete_import_file(driver,count-1)
+        #delete_import_file(driver,count-1)
 
 def after_import_file_cancel_click(driver):
     try:
         #delete file
-        delete_import_file(driver,2)
+        #delete_import_file(driver,2)
         cancel_xpath = '//*[@id="ctl00_ctl00_contentBody_cphMain_SaveCertifyButtons1_btnCancel"]'
         on_click(cancel_xpath,driver,60)
     except Exception as ex:
@@ -1030,23 +1075,39 @@ def wait_elment_click_by_previous_xpath(driver,previous_xpath,current_xpath,wait
         raise
 
 def rename_download_file_name():
-    try:
+    try:        
         new_current_download_report_file_path = PublicData.new_current_download_report_file_path
         new_file_name = new_current_download_report_file_path.split('\\')[-1]
         temp_new_file_name = new_file_name.replace('.xlsx','')
         total_count = 0
-        if os.path.exists(PublicData.download_report_folder_path):
-            for name in os.listdir(PublicData.download_report_folder_path):
+        if os.path.exists(PublicData.download_report_folder_path_total):
+            for name in os.listdir(PublicData.download_report_folder_path_total):
                 if temp_new_file_name in name:
                     total_count = total_count+1
         if total_count>0:
-            for name in os.listdir(PublicData.download_report_folder_path):
+            for name in os.listdir(PublicData.download_report_folder_path_total):
                 if new_file_name == name:
                     endstr = str(total_count)+'.xlsx'
                     temp_name = new_file_name.replace('.xlsx','')
                     rename_old_file_name = temp_name + endstr
-                    os.rename(new_current_download_report_file_path,PublicData.download_report_folder_path+'\\'+rename_old_file_name)
+                    os.rename(PublicData.download_report_folder_path_total+'\\'+new_file_name,PublicData.download_report_folder_path_total+'\\'+rename_old_file_name)
                     break
+        #new_current_download_report_file_path = PublicData.new_current_download_report_file_path
+        #new_file_name = new_current_download_report_file_path.split('\\')[-1]
+        #temp_new_file_name = new_file_name.replace('.xlsx','')
+        #total_count = 0
+        #if os.path.exists(PublicData.download_report_folder_path):
+        #    for name in os.listdir(PublicData.download_report_folder_path):
+        #        if temp_new_file_name in name:
+        #            total_count = total_count+1
+        #if total_count>0:
+        #    for name in os.listdir(PublicData.download_report_folder_path):
+        #        if new_file_name == name:
+        #            endstr = str(total_count)+'.xlsx'
+        #            temp_name = new_file_name.replace('.xlsx','')
+        #            rename_old_file_name = temp_name + endstr
+        #            os.rename(new_current_download_report_file_path,PublicData.download_report_folder_path+'\\'+rename_old_file_name)
+        #            break
     except Exception as ex:
         logging.exception('rename_download_file_name :'+str(ex))
 
@@ -1209,7 +1270,7 @@ def get_upload_file_name(discription):
         if is_236:
             end_number_name = '236XXX'
         else :
-            end_number_name = list_number[len(list_number) - 1].strip()
+            end_number_name = list_number[len(list_number) - 1].strip()[0:6]
         file_name = file_frist_name + end_number_name
         return file_name
     except Exception as ex:
@@ -1254,6 +1315,13 @@ def check_rename_download(browser,xpath_timeout):
                 old_file_name = PublicData.old_current_download_report_file_path
                 os.rename(old_file_name,new_file_name)
                 have_file = True
+                rename_download_file_name()
+                time.sleep(1)
+                copy_file(new_file_name,PublicData.download_report_folder_path_total)
+                time.sleep(2)
+                os.remove(PublicData.new_current_download_report_file_path)
+                time.sleep(2)
+                #os.rmdir(PublicData.download_report_folder_path)
                 is_success = True
             else:             
                 time.sleep(10)

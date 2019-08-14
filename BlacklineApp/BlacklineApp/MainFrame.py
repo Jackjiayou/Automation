@@ -223,9 +223,10 @@ class MainFrame(wx.Frame):
 
     def set_region_refer_path(self):
         try:
+            PublicData.download_report_folder_path_total =  r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\Source File'
             PublicData.blackline_monthly_reconciliation_previous_month_file_path =r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\BlacklineMonthlyReconciliation\\'+PublicData.report_name_in_monthly_reconciliation_folder
             PublicData.upload_report_folder = r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\ImportGroup'
-            PublicData.download_report_folder_path = r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\Source File'
+            PublicData.download_report_folder_path =  r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\Source File_'+ PublicData.username
             PublicData.upload_and_approve_excel_log_file_path = r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\BlacklineMonthlyReconciliation\Report_May19.xlsx'
             PublicData.generate_report_blackline_folder_path_by_vba_tool =r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\BlacklineMonthlyReconciliation'
             PublicData.generate_report_import_folder_path_by_vba_tool =r'C:\Blackline Automation App\Report'+'\\'+PublicData.app_previous_month_folder_name+'\\'+PublicData.download_report_region_name+r'\ImportGroup'
@@ -331,8 +332,8 @@ class MainFrame(wx.Frame):
             column_names = [PublicData.region_config_column_name_country_name,PublicData.region_config_column_name_gu,PublicData.region_config_column_name_region]
             PublicData.region_config_list =  Utility.read_excel_by_column_names(PublicData.task_config_file_path,PublicData.region_config_sheet_name,column_names)
 
-            have_file_log_file = Utility.create_file(PublicData.app_log_file_path)
-            log_helper.config_log_info(PublicData.app_log_file_path) 
+            #have_file_log_file = Utility.create_file(PublicData.app_log_file_path)
+            #log_helper.config_log_info(PublicData.app_log_file_path) 
 
             #have_file = Utility.init_app_need_file()   
             #if not have_file:
@@ -568,6 +569,7 @@ class MainFrame(wx.Frame):
         msg = ''
         is_success = True
         titile = 'Download report'
+        final_run_task_list = []
         try: 
             logging.info('run_vba_task begin')  
             clean_success = False
@@ -617,6 +619,7 @@ class MainFrame(wx.Frame):
             
             final_run_task_list = Utility.re_download_report(download_report_list,config_file_path, my_client,2)
             return_value = self.final_result_msg(final_run_task_list,return_value)
+
             Utility.generate_download_report(final_run_task_list) 
             return_value.width = 800
             logging.info('run_vba_task end')  
@@ -626,10 +629,29 @@ class MainFrame(wx.Frame):
             return_value.title = 'Download report failed'
             return_value.is_success = False
         finally:
+            deleted_folder = False
+            delete_count = 0
+            while not deleted_folder:
+                try:
+                    if delete_count>5:
+                        return_value.msg = return_value.msg+'and clear folder failed'
+                        break
+                    Utility.clear_folder(PublicData.download_report_folder_path)
+                    os.rmdir(PublicData.download_report_folder_path)
+                    deleted_folder = True
+                except Exception as ex:
+                    logging.info('rmdir delete folder:'+str(ex))
+                    time.sleep(1)
+                    delete_count = delete_count+1
+
             if alert_msg:
                 my_client.ExecuteJavascript('hideLoading()')
                 my_client.ExecuteJavascript('showMessage("'+return_value.msg+'","'+return_value.title+'","'+str(return_value.width)+'")')
             SeleniumHelper.close_driver(PublicData.web_driver)
+
+            logging.info('generate_download_report start')
+            #Utility.generate_download_report(final_run_task_list) 
+            logging.info('generate_download_report start')
             Utility.copy_log_info(PublicData.download_report_excel_sheet_name)
             Utility.copy_log_info(PublicData.log_upload_sheet_name)
             Utility.copy_log_info(PublicData.log_approve_sheet_name)
