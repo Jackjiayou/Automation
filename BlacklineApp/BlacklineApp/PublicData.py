@@ -20,13 +20,14 @@ app_previous_month_folder_name =month_list[previous_month_number-1]
 month_list_for_blackline_monthly_reconciliation_report =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 report_name_in_monthly_reconciliation_folder ='Report_'+str( month_list_for_blackline_monthly_reconciliation_report[previous_month_number-1])+str(last_month.year)[-2:]+'.xlsx'
 blackline_monthly_reconciliation_previous_month_file_path =r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\BlacklineMonthlyReconciliation\\'+report_name_in_monthly_reconciliation_folder
-
+eala_foder_log_excel_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+'EALA'+r'\BlacklineMonthlyReconciliation\\'+report_name_in_monthly_reconciliation_folder
 #config download report sheet name
 config_sheet_name ='Download Config'
 upload_report_folder = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\ImportGroup'
 
 upload_eale_file_foler = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\EALA\\ImportGroup'
 upload_apac_na_file_foler = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\APAC&NA\\ImportGroup'
+
 
 upload_and_approve_excel_log_file_path = r'C:\Blackline Automation App\Report'+'\\'+app_previous_month_folder_name+'\\'+download_report_region_name+r'\BlacklineMonthlyReconciliation\Report_May19.xlsx'
 app_log_file_path = os.path.expanduser('~') +r'\Blackline Automation App\Log\err.log'

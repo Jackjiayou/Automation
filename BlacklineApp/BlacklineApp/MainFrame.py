@@ -237,6 +237,23 @@ class MainFrame(wx.Frame):
         except Exception as ex:
             logging('set_region_refer_path :'+str(ex))
 
+    def create_default_log_file(self):
+        try:
+            target_file = PublicData.eala_foder_log_excel_path
+            fileDir = os.path.dirname(target_file)
+            if not os.path.exists(fileDir):
+                os.makedirs(fileDir)
+            if not os.path.isfile(target_file):
+                excel_helper.create_excel_file(target_file)
+                excel_helper.create_sheet_name(target_file,PublicData.report_sheetname,0)
+                colunm_names = ['Country','Import Total','Unmap Total','Account Reallocation Total','ATCA Total','Variance Checking']
+                excel_helper.set_colunm_name(colunm_names,target_file,PublicData.report_sheetname)
+                excel_helper.create_sheet_name(target_file,PublicData.download_report_excel_sheet_name,index = 1)
+                excel_helper.create_sheet_name(target_file,PublicData.log_approve_sheet_name,index = 2)
+                excel_helper.create_sheet_name(target_file,PublicData.log_upload_sheet_name,index = 3)
+        except Exception as ex:
+            logging.exception('create_default_log_file error: '+str(ex))
+
     def closeDevToolsFrm(self):
         try:
           data =  self.browser.CloseDevTools()
@@ -331,7 +348,7 @@ class MainFrame(wx.Frame):
         try:
             column_names = [PublicData.region_config_column_name_country_name,PublicData.region_config_column_name_gu,PublicData.region_config_column_name_region]
             PublicData.region_config_list =  Utility.read_excel_by_column_names(PublicData.task_config_file_path,PublicData.region_config_sheet_name,column_names)
-
+            self.create_default_log_file()
             #have_file_log_file = Utility.create_file(PublicData.app_log_file_path)
             #log_helper.config_log_info(PublicData.app_log_file_path) 
 

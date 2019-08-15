@@ -38,7 +38,9 @@ def copy_log_info(sheet_name):
     ''' copy log from total excel file '''
     try:
         source_file = PublicData.temp_report_excel_file_path
-        target_file = PublicData.blackline_monthly_reconciliation_previous_month_file_path
+        #target_file = PublicData.blackline_monthly_reconciliation_previous_month_file_path
+        target_file = PublicData.eala_foder_log_excel_path
+        
         #if not os.path.isfile(PublicData.blackline_monthly_reconciliation_previous_month_file_path):
         #    excel_helper.create_excel_file(target_file)
         #excel_helper.create_sheet_name(target_file,PublicData.report_sheetname,0)
